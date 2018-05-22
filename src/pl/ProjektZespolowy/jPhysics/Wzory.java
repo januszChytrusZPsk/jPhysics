@@ -2,9 +2,17 @@ package pl.ProjektZespolowy.jPhysics;
 
 import static java.lang.Math.*;
 
+/**
+ * Klasa Wzory - znajduje się tu wzory fizyczne odpowiedzialne za lot strzaly
+ */
+public class Wzory {
 
-public class WzoryV2 {
-
+    /**
+     * Metoda do obliczenia nowej prędkości pionowej
+     * @param strzala obiekt strzaly
+     * @param powietrze obiekt powietrza
+     * @param czas czas próbkowania
+     */
     private void nowaPredkoscPionowa(Strzala strzala, Powietrze powietrze, double czas){
 
 
@@ -19,7 +27,12 @@ public class WzoryV2 {
         }
     }
 
-
+    /**
+     * Metoda do obliczenia nowej prędkości poziomej
+     * @param strzala obiekt strzaly
+     * @param powietrze obiekt powietrza
+     * @param czas czas próbkowania
+     */
     private void nowaPredkoscPozioma(Strzala strzala, Powietrze powietrze, Wiatr wiatr, double czas){
 
         double predkoscPozioma= strzala.getPredkoscX();
@@ -30,8 +43,13 @@ public class WzoryV2 {
 
     }
 
-
-
+    /**
+     * Metoda do wylicznia nowej pozycji strzaly w pionie
+     * @param strzala obiekt strzaly
+     * @param powietrze obiekt powietrza
+     * @param czas czas próbkowania
+     * @return pozycja strzały y
+     */
     private double pozycjaY(Strzala strzala, Powietrze powietrze, double czas) {
 
         double poz = strzala.getPozycjaY();
@@ -44,6 +62,13 @@ public class WzoryV2 {
         return poz;
     }
 
+    /**
+     * Metoda do wylicznia nowej pozycji strzaly w poziomie
+     * @param strzala obiekt strzaly
+     * @param powietrze obiekt powietrza
+     * @param czas czas próbkowania
+     * @return pozycja strzały x
+     */
     private double pozycjaX(Strzala strzala, Powietrze powietrze, Wiatr wiatr, double czas){
 
         double poz = strzala.getPozycjaX();
@@ -55,6 +80,14 @@ public class WzoryV2 {
         return poz;
     }
 
+    /**
+     * Metoda do wylicznia nowej pozycji strzaly
+     * @param strzala obiekt strzaly
+     * @param powietrze obiekt powietrza
+     * @param czas czas próbkowania
+     * @param wiatr obiekt wiatru
+     * @return pozycja strzały x w tablicy
+     */
     public double[] nowapozycja(Strzala strzala, Powietrze powietrze, Wiatr wiatr, double czas){
         double[] wsp = new double[2];
         nowyKat(strzala);
@@ -64,6 +97,10 @@ public class WzoryV2 {
         return wsp;
     }
 
+    /**
+     * Metoda wyliczająca nachylenie strzały
+     * @param strzala obiekt strzały
+     */
     private void nowyKat(Strzala strzala){
         double kat=0;
         double X = strzala.getPredkoscX();
@@ -98,6 +135,12 @@ public class WzoryV2 {
         strzala.setNachylenie(kat);
     }
 
+    /**
+     * Medota obliczające przyspieszenie wytwarzane przez opór w pionie
+     * @param strzala obiekt strzały
+     * @param powietrze obiekt powietrza
+     * @return przyspieszenie double
+     */
     private double oporPowietrzaPion(Strzala strzala, Powietrze powietrze){
 
          double sila = 0.5 * powietrze.getGestoscPowietrza()*strzala.getOporStrzaly()*strzala.getPowierzchniaCzolowa()*pow(strzala.getPredkoscY(),2);
@@ -105,6 +148,13 @@ public class WzoryV2 {
 
          return przyspieszenie;
     }
+
+    /**
+     * Medota obliczające przyspieszenie wytwarzane przez opór w poziomie
+     * @param strzala obiekt strzały
+     * @param powietrze obiekt powietrza
+     * @return przyspieszenie double
+     */
     private double oporPowietrzaPoziom(Strzala strzala, Powietrze powietrze){
 
         double sila = 0.5 * powietrze.getGestoscPowietrza()*strzala.getOporStrzaly()*strzala.getPowierzchniaCzolowa()*pow(strzala.getPredkoscX(),2);
@@ -112,6 +162,13 @@ public class WzoryV2 {
         return przyspieszenie;
     }
 
+    /**
+     * Medota obliczające przyspieszenie wytwarzane przez wiatr
+     * @param strzala obiekt strzały
+     * @param powietrze obiekt powietrza
+     * @param wiatr obiekt wiatru
+     * @return przyspieszenie double
+     */
     private double oporWiatruPoziom(Strzala strzala, Powietrze powietrze, Wiatr wiatr){
 
         double sila;
@@ -128,47 +185,4 @@ public class WzoryV2 {
         System.out.println("        p:" +przyspieszenie);
         return przyspieszenie;
     }
-
-//    public double rk4(double x0, double xn, double y0, Drogi drogi){
-//
-//        double h = 0.1;
-//        double k1,k2,k3,k4;
-//        double n = (xn*10-x0*10)/(h*10);
-//
-//        double[][] xi = new double[(int)n+1][1];
-//        double[][] yi = new double[(int)n+1][1];
-//
-//        xi[0][0]  = x0;
-//        yi[0][0]  = y0;
-//
-//        for(int i = 1; i<n+1 ; i++){
-//
-//            k1 = h * drogi.droga( xi[i-1][0], yi[i-1][0]);
-//            k2 = h * drogi.droga( xi[i-1][0] + 0.5 * h, yi[i-1][0] + 0.5 * k1);
-//            k3 = h * drogi.droga( xi[i-1][0] + 0.5 * h, yi[i-1][0] + 0.5 * k2);
-//            k4 = h * drogi.droga( xi[i-1][0] + h, yi[i-1][0] + k3 );
-//
-//            xi[i][0] = xi[i-1][0] + h;
-//            yi[i][0] = yi[i-1][0] + ((1.0/6.0) * (k1 + (2*k2) + (2*k3) + k4));
-//
-//        }
-//        return yi[(int)n][0];
-//    }
-//
-//    public enum Drogi {
-//        PION {
-//            public double droga(double x, double y) {
-//               return y-(9.8066 * x);
-//                // return x + sin( (y+1)/ sqrt(13));
-//            }
-//        },
-//        POZIOM {
-//            public double droga(double x, double y) {
-//                return 2*x*y;
-//            }
-//        };
-//
-//        public abstract double droga(double x, double y);
-//    }
-//
 }

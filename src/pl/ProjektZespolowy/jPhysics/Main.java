@@ -1,6 +1,5 @@
 package pl.ProjektZespolowy.jPhysics;
 
-import static java.lang.Math.*;
 public class Main {
 
 	public static void main(String[] args) {
@@ -10,7 +9,7 @@ public class Main {
 
         wiatr.setSilaWiatru(-10);
 
-        WzoryV2 wzoryV2 = new WzoryV2();
+        Wzory wzory = new Wzory();
 
         System.out.println(strzala.getPredkoscX());
         System.out.println(strzala.getPredkoscY());
@@ -22,7 +21,7 @@ public class Main {
 
 
         for(; ; ) {
-            pp = wzoryV2.nowapozycja(strzala,powietrze,wiatr,czas);
+            pp = wzory.nowapozycja(strzala,powietrze,wiatr,czas);
 
             System.out.println(pp[0]+ ";" +pp[1]+ " nach:" + strzala.getNachylenie() );
             if(pp[1]<0)
