@@ -38,7 +38,7 @@ public class Strzala {
     /**
      * pozycja czubka strzały Y
      */
-    private double pozychaY;
+    private double pozycjaY;
 
     /**
      * Konstruktor podstawowy dla strzały normalnej strzaly z jej wszystkimi danymi
@@ -61,7 +61,7 @@ public class Strzala {
         this.powierzchniaBoczna = groty.getPowBoczna();
         this.oporStrzaly = groty.getOporOgolny();
         this.pozycjaX = x;
-        this.pozychaY = y;
+        this.pozycjaY = y;
     }
 
     public double getPredkoscX(){
@@ -89,11 +89,11 @@ public class Strzala {
      * @return - zwraca nachylenie w radianach
      */
     public double getNachylenie() {
-        return Math.toRadians(nachylenie);
+        return nachylenie;
     }
 
     public void setNachylenie(double nachylenie) {
-        this.nachylenie = Math.toDegrees(nachylenie);
+        this.nachylenie = nachylenie;
     }
 
     public double getPowierzchniaCzolowa() {
@@ -116,11 +116,11 @@ public class Strzala {
         this.pozycjaX = pozycjaX;
     }
 
-    public double getPozychaY() {
-        return pozychaY;
+    public double getPozycjaY() {
+        return pozycjaY;
     }
 
-    public void setPozychaY(double pozychaY) {
-        this.pozychaY = pozychaY;
+    public void setPozycjaY(double pozycjaY) {
+        this.pozycjaY = pozycjaY;
     }
 }

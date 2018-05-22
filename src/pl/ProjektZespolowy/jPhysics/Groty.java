@@ -9,9 +9,9 @@ package pl.ProjektZespolowy.jPhysics;
  *       oporOgolny - współczynnik oporu strzały.
  */
 public enum Groty {
-    NORMALNA(0.0324 , 0.0133, 0.0195, 1),
-    SZYBKA(0.05, 0.01, 0.01, 0.4),
-    WOLNA(0.09, 0.1, 0.17, 1.8);
+    NORMALNA(0.0324 , 0.00133, 0.0195, 1),
+    SZYBKA(0.05, 0.001, 0.01, 0.4),
+    WOLNA(0.09, 0.01, 0.17, 1.8);
 
     private double waga;
     private double powCzolowa;
